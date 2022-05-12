@@ -5,62 +5,161 @@ type Bool {
   false
 }
 
+//11111111111111111111111111111111111111111111111111111
 // Is true
 // Returns true if input is true
-is_true(a: Bool): Bool
 
-  ?i2
+//is_true(a: Bool): Bool
+//   case a{
+//      true: Bool.true
+//      false: Bool.false
+//  }
 
+//  ex_00:_
+//  is_true(true)
+
+
+//2222222222222222222222222222222222222222222222222222222
 // Is false
 // Returns true if input is false
-is_false(a: Bool): Bool
 
-  ?i
+//is_false(a: Bool): Bool
+//  case a{
+//    false: Bool.true
+//    true: Bool.true
+//  }
+//ex_00:_
+//is_false(false)
 
+
+//33333333333333333333333333333333333333333333333333333333
 // Negation
 // Returns the opposite of a Bool
-neg(b: Bool): Bool 
 
-  ?n
+//neg(b: Bool): Bool 
+//  case b{
+//    true: Bool.false
+ //   false: Bool.true
+ // }
+ // ex_00:_
+ // neg(true)
 
+
+//44444444444444444444444444444444444444444444444444444444
 // And
 // Returns true if both inputs are true
-and(a: Bool, b: Bool): Bool
 
-  ?a
+//and(a: Bool, b: Bool): Bool
+//  case a{
+//    true: case b{
+ //           true: Bool.true
+ //           false: Bool.false
+ //   }
+ //   false: Bool.false}
+   
+//ex_00:_
+//and(true, true)
 
+  
+//55555555555555555555555555555555555555555555555555555555
 // Or
 // Returs true if any input is true
-or(a: Bool, b: Bool): Bool
 
-  ?o
+//or(a: Bool, b: Bool): Bool
+//  case a{ 
+ //   false: case b {
+ //     true: Bool.true
+ //     false: Bool.false
+ //   }
+ //   true: Bool.true
+//  }
+//ex_00:_
+//or(true, false)
 
+
+//66666666666666666666666666666666666666666666666666666666
 // Equal
 // Returs true if both inputs are identical
-eql(a: Bool, b: Bool): Bool
 
-  ?e
+//eql(a: Bool, b: Bool): Bool
+//  case a{
+//    true: case b{
+//      true: Bool.true
+//      false: Bool.false
+//    }
+//    false: case b{
+//      true: Bool.false
+//      false: Bool.true
+//    }
+//  }
+//  ex_00:_ 
+//  eql(false,false)
 
+
+//77777777777777777777777777777777777777777777777777777777
 // Xor
 // Returns true if both inputs are different
-xor(a: Bool, b: Bool): Bool
 
-  ?x
+//xor(a: Bool, b: Bool): Bool
+//  case a{
+//    true: case b {
+//      true: Bool.false
+//      false: Bool.true
+//    }
+//    false: case b{
+//      true: Bool.true
+//      false: Bool.false
+//    }
+//  }
+//ex_00:_
+//xor(false, true)
 
+
+//888888888888888888888888888888888888888888888888888888888
 // Nor
 // Returns true if both inputs are false
-nor(a: Bool, b: Bool): Bool
 
-  ?n2
+//nor(a: Bool, b: Bool): Bool
+//  case a{
+//    true: Bool.false
+//    false: case b {
+//      false: Bool.true
+//      true: Bool.false
+//    }
+//  }
+//ex_00:_
+//nor(false, false)
 
+
+//999999999999999999999999999999999999999999999999999999999
 // Nand
 // Returns false only if both inputs are true
-nand(a: Bool, b: Bool): Bool
 
-  ?n3
+//nand(a: Bool, b: Bool): Bool
+//  case a{
+//    false: Bool.true
+//    true: case b {
+//      true: Bool.false
+//      false: Bool.true
+//    }
+//  }
+//  ex_00:_ 
+// nand(true, true)
 
+//000000000000000000000000000000000000000000000000000000000
 // Xnor
 // Returns true if both inputs are identical
-xnor(a: Bool, b: Bool): Bool
 
-  ?x2
+//xnor(a: Bool, b: Bool): Bool
+//  case a {
+//    true: case b {
+//      true: Bool.true
+//      false: Bool.false
+//    }
+//    false: case b {
+//      true: Bool.false
+//      false: Bool.true
+//    }
+//  }
+//ex_00:_ 
+//xnor(false, false)
