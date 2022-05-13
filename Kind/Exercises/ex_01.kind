@@ -64,14 +64,11 @@ type MaybeBool {
 //função original do exercicio era "default" mas com esse nome não roda
 //defaul(a: MaybeBool, v: Bool): Bool
 //    case a {
-//      none: case v {
-//        true: Bool.true
-//        false: Bool.false
-//      }
-//      some: Bool.false
+//      none: v  
+//      some: a.value
 //    }
 //ex_01: Bool
-//defaul(MaybeBool.some() , true)
+//defaul(MaybeBool.some(Bool.true) , true)
 
 
 //55555555555555555555555555555555555555555555555555555555555555
@@ -80,7 +77,7 @@ type MaybeBool {
 //create(a:Bool): MaybeBool
 //  case a{
 //    true: MaybeBool.some(Bool.true)
-//    false: MaybeBool.none
+//    false: MaybeBool.some(Bool.false)
 //  }
 
 //ex_01: MaybeBool
@@ -90,17 +87,17 @@ type MaybeBool {
 //66666666666666666666666666666666666666666666666666666666666666
 // Returns the first input that is a MaybeBool.some
 // Returns MaybeBool.none if both are MaybeBool.none
-//or(a: MaybeBool, b: MaybeBool) : MaybeBool 
-//  case a {
-//    none: case b{
-//      none: MaybeBool.none
-//      some: MaybeBool.some(true) }
+// or(a: MaybeBool, b: MaybeBool) : MaybeBool 
+//   case a {
+//     none: case b{
+//       none: MaybeBool.none
+//       some: MaybeBool.some(true) }
     
-//    some: case b {
-//      none: a
-//      some: a
-//    }
-// }
+//     some: case b {
+//       none: a
+//       some: a
+//     }
+//  }
 
-//ex_01: MaybeBool
-//or(MaybeBool.none , MaybeBool.some())
+// ex_01: MaybeBool
+// or(MaybeBool.none , MaybeBool.some())
