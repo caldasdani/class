@@ -8,6 +8,7 @@ type PairBool {
 fst(pair: PairBool): Bool
   ?a
 
+
 // Returns the second element of a pair
 snd(pair: PairBool): Bool
   ?b
