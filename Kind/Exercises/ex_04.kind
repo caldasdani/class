@@ -5,60 +5,106 @@ type Nat {
   succ(pred: Nat)
 }
 
-// Doubles a number
+//Doubles a number
 dbl(a: Nat): Nat // double
+    case a{
+      zero: Nat.zero
+      succ: Nat.succ(Nat.succ(dbl(a.pred)))
+    }
+// ex_04: Nat
+// dbl(5)
 
-  ?b
 
 // Addition
 add(a: Nat, b: Nat): Nat
+    case a {
+      zero: b
+      succ: case b{
+        zero: a
+        succ: Nat.succ(Nat.succ(add(a.pred b.pred)))
+      }
+    }
+// ex_04: Nat
+// add(5 , 3)
 
-  ?a
 
-// Multiplication
+// // Multiplication
 mul(a: Nat, b: Nat): Nat
-  
-  ?m
+    case a{
+      zero: Nat.zero
+      succ: case b{
+          zero: Nat.zero
+          succ: add(mul(a.pred, b), b)
+      }
+    }
+//ex_04: Nat
+//  mul(2, 4)
 
+  
 // Subtraction
 // 4 - 5 = 0
 // 5 - 4 = 1
 sub(a: Nat, b: Nat): Nat
+    case a{
+      zero: Nat.zero
+      succ: case b{
+          zero: a
+          succ: sub(a.pred, b.pred)
+      }
+    }
+// ex_04: Nat
+// sub(8, 3)
 
-  ?s
 
 // Factorial
 // 4! = 24
 fac(a: Nat): Nat 
-  
-  ?f
+    case a{
+      zero: Nat.succ(Nat.zero)
+      succ: mul(a, fac(a.pred))
+    }
+ex_04: Nat
+fac(4)
 
-// Division
-// 1 / 2 = 0
-// x / 0 = 0
-// 5 / 2 = 2
-div(a: Nat, b: Nat): Nat // division
-  
-  ?d
 
-// Equal
+// // Division
+// // 1 / 2 = 0
+// // x / 0 = 0
+// // 5 / 2 = 2
+// div(a: Nat, b: Nat): Nat // division
+  
+//   ?d
+
+// // Equal
 eql(a: Nat, b: Nat): Bool // Given 2 numbers, it returns true if the 2 are the same and false if they are different.
-  
-  ?e 
+    case a{
+      zero: case b{
+        zero: Bool.true
+        succ: Bool.false
+      }
+      succ: case b{
+        zero: Bool.false
+        succ: ?goal
+      }
+     }
+// ex_04: Bool
+// eql(5, 2)
 
-// Do not use the "not" function to create the functions below
 
-// Greater than
-// 2 > 1 = True
-// 3 > 3 = False
-gtn(a: Nat, b: Nat): Bool // if A > B == True else false
-  
-  ?g
 
-// Lower than
-// 1 < 2 = True
-// 3 < 3 = False
-ltn(a: Nat, b: Nat): Bool // if A > B == False else true 
+// // Do not use the "not" function to create the functions below
+
+// // Greater than
+// // 2 > 1 = True
+// // 3 > 3 = False
+// gtn(a: Nat, b: Nat): Bool // if A > B == True else false
   
-  ?l
+//   ?g
+
+// // Lower than
+// // 1 < 2 = True
+// // 3 < 3 = False
+// ltn(a: Nat, b: Nat): Bool // if A > B == False else true 
+  
+//   ?l
 

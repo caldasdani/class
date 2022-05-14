@@ -9,11 +9,11 @@ type Bool {
 // Is true
 // Returns true if input is true
 
-//is_true(a: Bool): Bool
-//   case a{
-//      true: Bool.true
-//      false: Bool.false
-//  }
+is_true(a: Bool): Bool
+  case a{
+     true: Bool.true
+     false: Bool.false
+ }
 
 //  ex_00:_
 //  is_true(true)
@@ -23,11 +23,11 @@ type Bool {
 // Is false
 // Returns true if input is false
 
-//is_false(a: Bool): Bool
-//  case a{
-//    false: Bool.true
-//    true: Bool.true
-//  }
+is_false(a: Bool): Bool
+ case a{
+   false: Bool.true
+   true: Bool.true
+ }
 //ex_00:_
 //is_false(false)
 
@@ -36,11 +36,11 @@ type Bool {
 // Negation
 // Returns the opposite of a Bool
 
-//neg(b: Bool): Bool 
-//  case b{
-//    true: Bool.false
- //   false: Bool.true
- // }
+neg(b: Bool): Bool 
+ case b{
+   true: Bool.false
+   false: Bool.true
+ }
  // ex_00:_
  // neg(true)
 
@@ -49,13 +49,13 @@ type Bool {
 // And
 // Returns true if both inputs are true
 
-//and(a: Bool, b: Bool): Bool
-//  case a{
-//    true: case b{
- //           true: Bool.true
- //           false: Bool.false
- //   }
- //   false: Bool.false}
+and(a: Bool, b: Bool): Bool
+ case a{
+   true: case b{
+           true: Bool.true
+           false: Bool.false
+   }
+   false: Bool.false}
    
 //ex_00:_
 //and(true, true)
@@ -65,14 +65,14 @@ type Bool {
 // Or
 // Returs true if any input is true
 
-//or(a: Bool, b: Bool): Bool
-//  case a{ 
- //   false: case b {
- //     true: Bool.true
- //     false: Bool.false
- //   }
- //   true: Bool.true
-//  }
+or(a: Bool, b: Bool): Bool
+ case a{ 
+   false: case b {
+     true: Bool.true
+     false: Bool.false
+   }
+   true: Bool.true
+ }
 //ex_00:_
 //or(true, false)
 
@@ -81,17 +81,17 @@ type Bool {
 // Equal
 // Returs true if both inputs are identical
 
-//eql(a: Bool, b: Bool): Bool
-//  case a{
-//    true: case b{
-//      true: Bool.true
-//      false: Bool.false
-//    }
-//    false: case b{
-//      true: Bool.false
-//      false: Bool.true
-//    }
-//  }
+eql(a: Bool, b: Bool): Bool
+ case a{
+   true: case b{
+     true: Bool.true
+     false: Bool.false
+   }
+   false: case b{
+     true: Bool.false
+     false: Bool.true
+   }
+ }
 //  ex_00:_ 
 //  eql(false,false)
 
@@ -100,17 +100,17 @@ type Bool {
 // Xor
 // Returns true if both inputs are different
 
-//xor(a: Bool, b: Bool): Bool
-//  case a{
-//    true: case b {
-//      true: Bool.false
-//      false: Bool.true
-//    }
-//    false: case b{
-//      true: Bool.true
-//      false: Bool.false
-//    }
-//  }
+xor(a: Bool, b: Bool): Bool
+ case a{
+   true: case b {
+     true: Bool.false
+     false: Bool.true
+   }
+   false: case b{
+     true: Bool.true
+     false: Bool.false
+   }
+ }
 //ex_00:_
 //xor(false, true)
 
@@ -119,14 +119,14 @@ type Bool {
 // Nor
 // Returns true if both inputs are false
 
-//nor(a: Bool, b: Bool): Bool
-//  case a{
-//    true: Bool.false
-//    false: case b {
-//      false: Bool.true
-//      true: Bool.false
-//    }
-//  }
+nor(a: Bool, b: Bool): Bool
+ case a{
+   true: Bool.false
+   false: case b {
+     false: Bool.true
+     true: Bool.false
+   }
+ }
 //ex_00:_
 //nor(false, false)
 
@@ -135,14 +135,14 @@ type Bool {
 // Nand
 // Returns false only if both inputs are true
 
-//nand(a: Bool, b: Bool): Bool
-//  case a{
-//    false: Bool.true
-//    true: case b {
-//      true: Bool.false
-//      false: Bool.true
-//    }
-//  }
+nand(a: Bool, b: Bool): Bool
+ case a{
+   false: Bool.true
+   true: case b {
+     true: Bool.false
+     false: Bool.true
+   }
+ }
 //  ex_00:_ 
 // nand(true, true)
 
@@ -150,16 +150,16 @@ type Bool {
 // Xnor
 // Returns true if both inputs are identical
 
-//xnor(a: Bool, b: Bool): Bool
-//  case a {
-//    true: case b {
-//      true: Bool.true
-//      false: Bool.false
-//    }
-//    false: case b {
-//      true: Bool.false
-//      false: Bool.true
-//    }
-//  }
+xnor(a: Bool, b: Bool): Bool
+ case a {
+   true: case b {
+     true: Bool.true
+     false: Bool.false
+   }
+   false: case b {
+     true: Bool.false
+     false: Bool.true
+   }
+ }
 //ex_00:_ 
 //xnor(false, false)
