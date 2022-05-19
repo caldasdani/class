@@ -49,10 +49,7 @@ case a{
                false: case b.value{
                        true: Bool.false
                        false: Bool.true
-     }
-   }
- }
-}
+     }}}}
 //ex_01: Bool
 //eql(MaybeBool.some(true) , MaybeBool.some(true))
 
@@ -96,8 +93,7 @@ or(a: MaybeBool, b: MaybeBool) : MaybeBool
     some: case b {
       none: a
       some: a
-    }
- }
+    }}
 
 // ex_01: MaybeBool
 // or(MaybeBool.none , MaybeBool.some())

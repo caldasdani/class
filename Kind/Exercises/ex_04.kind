@@ -14,6 +14,7 @@ dbl(a: Nat): Nat // double
 // ex_04: Nat
 // dbl(5)
 
+//------------------------------------------------------------------------------------------------
 
 // Addition
 add(a: Nat, b: Nat): Nat
@@ -25,8 +26,9 @@ add(a: Nat, b: Nat): Nat
       }
     }
 // ex_04: Nat
-// add(5 , 3)
+// add(5, 3)
 
+//------------------------------------------------------------------------------------------------
 
 // // Multiplication
 mul(a: Nat, b: Nat): Nat
@@ -40,6 +42,7 @@ mul(a: Nat, b: Nat): Nat
 //ex_04: Nat
 //  mul(2, 4)
 
+//------------------------------------------------------------------------------------------------
   
 // Subtraction
 // 4 - 5 = 0
@@ -53,8 +56,9 @@ sub(a: Nat, b: Nat): Nat
       }
     }
 // ex_04: Nat
-// sub(8, 3)
+// sub(10 , 5)
 
+//------------------------------------------------------------------------------------------------
 
 // Factorial
 // 4! = 24
@@ -63,17 +67,10 @@ fac(a: Nat): Nat
       zero: Nat.succ(Nat.zero)
       succ: mul(a, fac(a.pred))
     }
-ex_04: Nat
-fac(4)
+// ex_04: Nat
+// fac(4)
 
-
-// // Division
-// // 1 / 2 = 0
-// // x / 0 = 0
-// // 5 / 2 = 2
-// div(a: Nat, b: Nat): Nat // division
-  
-//   ?d
+//------------------------------------------------------------------------------------------------
 
 // // Equal
 eql(a: Nat, b: Nat): Bool // Given 2 numbers, it returns true if the 2 are the same and false if they are different.
@@ -84,27 +81,103 @@ eql(a: Nat, b: Nat): Bool // Given 2 numbers, it returns true if the 2 are the s
       }
       succ: case b{
         zero: Bool.false
-        succ: ?goal
-      }
-     }
+        succ: eql(a.pred , b.pred)
+          }
+        }
 // ex_04: Bool
-// eql(5, 2)
+// eql(2, 5)
+
+//------------------------------------------------------------------------------------------------
 
 
+// Do not use the "not" function to create the functions below
 
-// // Do not use the "not" function to create the functions below
+// Greater than
+// 2 > 1 = True
+// 3 > 3 = False
+gtn(a: Nat, b: Nat): Bool // if A > B == True else false
+  case a{
+    zero: Bool.false
+    succ: case b{
+          zero: Bool.true
+          succ: gtn(a.pred , b.pred)
+    }}
+// ex_04: Bool
+// gtn(2,1)
 
-// // Greater than
-// // 2 > 1 = True
-// // 3 > 3 = False
-// gtn(a: Nat, b: Nat): Bool // if A > B == True else false
+//------------------------------------------------------------------------------------------------
+
+// Lower than
+// 1 < 2 = True
+// 3 < 3 = False
+ltn(a: Nat, b: Nat): Bool // if A > B == False else true 
+  case b{
+    zero: Bool.false
+    succ: case a{
+          zero: Bool.true
+          succ: ltn(a.pred , b.pred)
+    }}
+// ex_04: Bool
+// ltn(2,1)
+
+//------------------------------------------------------------------------------------------------
+
+// Minimum
+// min(2, 3) = 2
+// min(4, 1) = 1
+min(a: Nat, b: Nat): Nat // if A < B then A else B
+  case a{
+    zero: Nat.zero
+    succ: case b{
+          zero: Nat.zero
+          succ: case gtn(a,b){
+                true: b
+                false: a
+          }}}
+// ex_04: Nat
+// min(3, 1)
+
+//------------------------------------------------------------------------------------------------
+
+
+// Maximum
+// max(2, 3) = 3
+// max(4, 1) = 4
+max(a: Nat, b: Nat): Nat // if A > B then A else B
+ case a{
+    zero: b
+    succ: case b{
+          zero: a
+          succ: case gtn(a, b){
+                true: a
+                false: b
+    }}}
+// ex_04: Nat
+// max(2, 7)
+
+//------------------------------------------------------------------------------------------------
+
+// Divides a number by two
+// 2 / 2 = 1
+// 5 / 2 = 2
+// 1 / 2 = 0
+hlf(a: Nat): Nat
+    case a{
+      zero: Nat.zero
+      succ: case a.pred{
+        zero: Nat.zero
+        succ: Nat.succ(hlf(a.pred.pred))
+      }
+    }
+// ex_04: Nat
+// hlf(6)
+
+//------------------------------------------------------------------------------------------------
+
+// Division
+// 1 / 2 = 0
+// x / 0 = 0
+// 5 / 2 = 2
+div(a: Nat, b: Nat): Nat // division
   
-//   ?g
-
-// // Lower than
-// // 1 < 2 = True
-// // 3 < 3 = False
-// ltn(a: Nat, b: Nat): Bool // if A > B == False else true 
-  
-//   ?l
-
+  ?d
