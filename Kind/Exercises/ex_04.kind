@@ -97,7 +97,7 @@ eql(a: Nat, b: Nat): Bool // Given 2 numbers, it returns true if the 2 are the s
 // 3 > 3 = False
 gtn(a: Nat, b: Nat): Bool // if A > B == True else false
   case a{
-    zero: Bool.false
+    zero: Bool.false 
     succ: case b{
           zero: Bool.true
           succ: gtn(a.pred , b.pred)
@@ -179,5 +179,11 @@ hlf(a: Nat): Nat
 // x / 0 = 0
 // 5 / 2 = 2
 div(a: Nat, b: Nat): Nat // division
-  
-  ?d
+    case b{
+      zero: Nat.zero
+      succ: case ltn(a,b){
+            true: Nat.zero
+            false: Nat.succ(div(sub(a , b) , b))
+      }}    
+ex_04: Nat
+div(9,3)
