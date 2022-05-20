@@ -19,12 +19,12 @@ first<A: Type, B: Type>(pair: Pair<A,B>): A
     new: pair.fst
   }
 ex_05: Bool
-first<Bool Bool>(Pair.new <Bool Bool>(Bool.true, Bool.false))
+first<Bool Bool>(Pair.new<Bool Bool>(Bool.true, Bool.false))
 
 //--------------------------------------------------------------------
 
 
-Returns the second element of a pair
+//Returns the second element of a pair
 second<A: Type, B: Type>(pair: Pair<A,B>): B
   case pair {
     new: pair.snd
