@@ -123,8 +123,12 @@ map<A: Type, B: Type>(fn: A -> B, xs: List<A>): List<B>
 //-------------------------------------------------------------------------------
 
 reverse.go<A: Type>(new: List<A>, old: List<A>): List<A>
-  ?r
-
+  case old {
+    nil: List.nil<A>
+    cons: case xs.tail {
+      nil: xs.head 
+      cons:
+    }}
 // // Returns the same list, with the order reversed
 //reverse<A: Type>(xs: List<A>): List<A>
   // reverse.go<A>(List.nil<A>, xs)

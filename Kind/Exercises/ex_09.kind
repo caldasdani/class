@@ -26,11 +26,11 @@ ltn(a: Nat, b: Nat): Bool // if A < B = true
           succ: ltn(a.pred , b.pred)
     }}
 
-smallest(xs: List<Nat>): Nat
+smallest(xs: List<Nat>): Maybe<Nat>
   case xs {
-    nil: 0
+    nil: Maybe.none
     cons: case xs.tail {
-      nil: xs.head 
+      nil: maybe.some(xs.head)
       cons: case ltn(xs.head, xs.tail.head) {
         true: smallest(List.cons<Nat>(xs.head, xs.tail.tail))
         false: smallest(xs.tail)
@@ -38,20 +38,32 @@ smallest(xs: List<Nat>): Nat
     }
   }
 
-ex_09: Nat
-let List = [6, 9, 15, 5, 12, 1, 25, 2]
-smallest(List)
+smallest.go(xs: List<Nat>): Nat
+  case smallest(xs){
+    none: 0
+    some: self.value
+  }
 
-// Returns the same list without the smallest element
-// delete_smallest(xs: List<Nat>): List<Nat>
-//   case xs{
-//     nil: List.nil<Nat>
-//     cons: case 
-//   }
+// ex_09: Nat
+// let List = [6, 9, 15, 5, 12, 1, 25, 2]
+// smallest(List)
+
+//---------------------------------------------------------------------------------------------
+
+Returns the same list without the smallest element
+delete_smallest(xs: List<Nat>): List<Nat>
+  case xs{
+    nil: List.nil<Nat>
+    cons: case 
+  }
+
+//---------------------------------------------------------------------------------------------
 
 // Returns the same list, in ascending order
 sort_ascending(xs: List<Nat>): List<Nat>
-  ?a
+  
+
+//---------------------------------------------------------------------------------------------
 
 // Returns an element at an index from the list
 // if there is an element at that index
@@ -61,7 +73,9 @@ sort_ascending(xs: List<Nat>): List<Nat>
 get<A: Type>(idx: Nat, xs: List<A>): Maybe<A>
   ?g
 
+//---------------------------------------------------------------------------------------------
+
 // Removes all elements that does not match a condition
 // List.filter<Nat>(Nat.odd, [1, 2, 3, 4, 5]) = [1, 3, 5]
 filter<A: Type>(f: A -> Bool, xs: List<A>): List<A>
-  ?f
+  

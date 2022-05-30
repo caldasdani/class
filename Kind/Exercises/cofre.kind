@@ -1,0 +1,28 @@
+
+type Cofre {
+  new(senha: Bits)
+}
+
+find_password(cofre: Cofre): Nat
+
+  let senha = cofre@senha  
+  let a = Bits.take(4, senha)                   // a = os 4 primeiros numeros
+  let senha = Bits.drop(4, senha)               
+  let b = Bits.take(4, senha)                   // b = os 4 numeros do meio
+  let senha = Bits.drop(4, senha)
+  let c = Bits.take(4, senha)                   // c = os 4 ultimos numeros
+  
+  let a = Bits.to_nat(a)                        // os 4 primeiros bits viram um Nat    
+  let b = Bits.to_nat(b)                        // mesmo raciocinio
+  let c = Bits.to_nat(c)                        // aqui tb..
+
+  let resultado = (a * 100) + (b * 10) + (c * 1)    // Isso aqui o derenas me ajudou
+  resultado                                         // eu nem sabia q podia usar sinais tipo * e + em kind =/
+   
+
+cofre: Nat
+  let cofre_a = Cofre.new(Bits.read("100011101001")) // 1 7 9
+  let cofre_b = Cofre.new(Bits.read("001010001100")) // 4 1 3
+  let cofre_c = Cofre.new(Bits.read("011000001110")) // 6 0 7
+  
+  find_password(cofre_b)
