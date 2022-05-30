@@ -42,3 +42,4 @@ map<A: Type, B: Type>(fn: A -> B, pair: Pair<A,A>): Pair<B,B>
   }
 //ex_05:_
 //map()
+//
