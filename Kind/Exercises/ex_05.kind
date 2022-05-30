@@ -18,8 +18,8 @@ first<A: Type, B: Type>(pair: Pair<A,B>): A
   case pair {
     new: pair.fst
   }
-ex_05: Bool
-first<Bool Bool>(Pair.new<Bool Bool>(Bool.true, Bool.false))
+// ex_05: Bool
+// first<Bool Bool>(Pair.new<Bool Bool>(Bool.true, Bool.false))
 
 //--------------------------------------------------------------------
 
@@ -36,9 +36,9 @@ second<A: Type, B: Type>(pair: Pair<A,B>): B
 
 
 // // Applies a function to both elements of a Pair
-// map<A: Type, B: Type>(fn: A -> B, pair: Pair<A,A>): Pair<B,B>
-//    case pair {
-//     new: Pair.new<B, B>(fn(pair.fst), fn(pair.snd))
-//   }
+map<A: Type, B: Type>(fn: A -> B, pair: Pair<A,A>): Pair<B,B>
+   case pair {
+    new: Pair.new<B, B>(fn(pair.fst), fn(pair.snd))
+  }
 //ex_05:_
 //map()
