@@ -122,16 +122,24 @@ map<A: Type, B: Type>(fn: A -> B, xs: List<A>): List<B>
 // List.show<Nat>(Nat.show, map<Nat, Nat>(Nat.succ , List))
 //-------------------------------------------------------------------------------
 
-reverse.go<A: Type>(new: List<A>, old: List<A>): List<A>
+reverse.go<A: Type>(nova: List<A>, old: List<A>): List<A>
   case old {
-    nil: List.nil<A>
-    cons: case xs.tail {
-      nil: xs.head 
-      cons:
-    }}
+    nil: nova
+    cons: reverse.go<A>(List.cons<A>(old.head, nova), old.tail)
+    }
+
+// ex_08:_  
+// let old = [5, 6, 7, 8, 9, 10, 11]  //lista tipo Nat
+// let nova = []
+// List.show<Nat>(Nat.show, reverse.go<Nat>(nova , old))
+
+
 // // Returns the same list, with the order reversed
-//reverse<A: Type>(xs: List<A>): List<A>
-  // reverse.go<A>(List.nil<A>, xs)
+reverse<A: Type>(xs: List<A>): List<A>
+  reverse.go<A>(List.nil<A>, xs)
+// ex_08:_  
+// let old = [5, 6, 7, 8, 9, 10, 11]  //lista tipo Nat
+// List.show<Nat>(Nat.show, reverse<Nat>(old))
 
 //-------------------------------------------------------------------------------
 

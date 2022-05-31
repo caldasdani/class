@@ -239,8 +239,8 @@ reverse_go(b: Bits, acum: Bits): Bits
 //reverse(b) -> Bits.i(Bits.i(Bits.o(Bits.e)))
 //reverse(c) -> Bits.i(Bits.i(Bits.o(Bits.o(Bits.e))))
 //reverse(d) -> Bits.i(Bits.i(Bits.i(Bits.i(Bits.e))))
-// reverse(b: Bits): Bits
-//   reverse_go(b, Bits.e)
+reverse(b: Bits): Bits
+  reverse_go(b, Bits.e)
 
 //------------------------------------------------------------------------------------------ 
 
@@ -264,23 +264,51 @@ length_go(bs: Bits, acum: Nat): Nat
 //length(b) -> Nat.succ(Nat.succ(Nat.succ(Nat.zero)))
 //length(c) -> Nat.succ(Nat.succ(Nat.succ(Nat.succ(Nat.zero))))
 //length(d) -> 4
-// length(bs: Bits): Nat
-// length_go(b, 0)
+length(bs: Bits): Nat
+length_go(b, 0)
 
 //------------------------------------------------------------------------------------------ 
 
 //Multiplies two Bits structures
 
-// mul_go(a: Bits, b: Bits, acum: Bits): Bits
-//   case a{
-//     e: Bits.e
-//     o: case b{
-//       e: Bits.e
-//       o: add(Bits.to_nat(a), Bits.to_nat(b))
-//       i:
-//     }
-//     i:
-//   }
+addNat(a: Nat, b: Nat): Nat
+  case a{
+    zero: b
+    succ: case b{
+           zero: a
+           succ: Nat.succ(Nat.succ(addNat(a.pred, b.pred)))    
+          }
+  }
+
+mulNat(a: Nat, b: Nat): Nat
+  case a {
+    zero: Nat.zero
+    succ: case b{
+          zero: Nat.zero
+          //      add|    a        |  b
+          succ: addNat(mulNat(a.pred, b), b) 
+    }
+  }
+
+mul(a: Bits, b: Bits): Bits
+  let aa = Bits.to_nat(a)
+  let bb = Bits.to_nat(b)
+  Nat.to_bits(mulNat(aa, bb))
+  
+   
+//mul(a,b) -> Bits.o(Bits.i(Bits.o(Bits.o(Bits.i(Bits.e)))))
+//mul(b,c) -> Bits.o(Bits.o(Bits.o(Bits.i(Bits.o(Bits.o(Bits.i(Bits.e)))))))
+// mul(a: Bits, b: Bits): Bits
+  // mul_go(a, b, Bits.e)
+
+ex_07: Bits
+
+  let a = Bits.i(Bits.i(Bits.e)) //3
+  let b = Bits.o(Bits.i(Bits.i(Bits.e))) //6
+  let c = Bits.o(Bits.o(Bits.i(Bits.i(Bits.e)))) //12
+  let d = Bits.i(Bits.i(Bits.i(Bits.i(Bits.e)))) //15
+
+  mul(b,c) 
 
 
 //mul(a,b) -> Bits.o(Bits.i(Bits.o(Bits.o(Bits.i(Bits.e)))))

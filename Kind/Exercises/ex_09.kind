@@ -24,7 +24,8 @@ ltn(a: Nat, b: Nat): Bool // if A < B = true
     succ: case a{
           zero: Bool.true
           succ: ltn(a.pred , b.pred)
-    }}
+    }
+  }
 
 smallest(xs: List<Nat>): Maybe<Nat>
   case xs {
