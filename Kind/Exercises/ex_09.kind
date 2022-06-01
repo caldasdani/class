@@ -22,78 +22,115 @@ zip<A: Type, B: Type>(xs: List<A>, ys: List<B>): List<Pair<A,B>>
     }
   }
 // ex_09:_
-// let L1 = [5, 6, 7, 8]
+// let L1 = ["a", "b", "c", "d"]
 // let L2 = [1, 2, 3, 4]
-// List.show<Nat>(Nat.show zip<Nat, Nat>([5, 6, 7, 8], [1, 2, 3, 4] ))
+// List.show<Pair<String, Nat>>(Pair.show<String, Nat>((x)x, Nat.show), zip<String, Nat>(L1, L2))
 
 
 //---------------------------------------------------------------------------------------------
 
 // Returns the smallest element of a List
 
-// ltn(a: Nat, b: Nat): Bool // if A < B = true
-//   case b{
-//     zero: Bool.false
-//     succ: case a{
-//           zero: Bool.true
-//           succ: ltn(a.pred , b.pred)
-//     }
-//   }
+ltn(a: Nat, b: Nat): Bool // if A < B = true
+  case b{
+    zero: Bool.false
+    succ: case a{
+          zero: Bool.true
+          succ: ltn(a.pred , b.pred)
+    }
+  }
 
-// smallest(xs: List<Nat>): Maybe<Nat>    
-//   case xs {
-//     nil: Maybe.none                 
-//     cons: case xs.tail {
-//       nil: maybe.some(xs.head)
-//       cons: case ltn(xs.head, xs.tail.head) {
-//         true: smallest(List.cons<Nat>(xs.head, xs.tail.tail))
-//         false: smallest(xs.tail)
-//       }
-//     }
-//   }
+smallest(xs: List<Nat>): Maybe<Nat>    
+  case xs {
+    nil: Maybe.none<Nat>                 
+    cons: case xs.tail {
+      nil: Maybe.some<Nat>(xs.head)
+      cons: case ltn(xs.head, xs.tail.head) {
+        true: smallest(List.cons<Nat>(xs.head, xs.tail.tail))
+        false: smallest(xs.tail)
+      }
+    }
+  }
 
-// smallest.go(xs: List<Nat>): Nat        // Savio deu a dica de criar essa função auxiliar
-//   case smallest(xs){
-//     none: 0
-//     some: self.value
-//   }
+smallest.go(xs: List<Nat>): Nat        // Savio deu a dica de criar essa função auxiliar
+  case smallest(xs){
+    none: 0
+    some: self.value
+  }
 
-// // ex_09: Nat
-// // let List = [6, 9, 15, 5, 12, 1, 25, 2]
-// // smallest(List)
+// ex_09: Nat
+// let List = [6, 9, 15, 5, 12, 1, 25, 2]
+// smallest(List)
 
-// //---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
-// //Returns the same list without the smallest element
-// // delete_smallest(xs: List<Nat>): List<Nat>
-// //   case xs{
-// //       nil: List.nil<Nat>
-// //       cons: 
-        
-// //   }
-// // ex_09:_
-// // let List = [6, 9, 15, 5, 12, 1, 25, 2]
-// // delete_smallest(List)
+//Returns the same list without the smallest element
+delete_smallest(xs: List<Nat>): List<Nat>
+  case xs{
+    nil: List.nil<Nat>
+    cons: 
+    case xs.tail{
+      nil: List.nil<Nat>
+      cons: 
+      let smallest = smallest(xs) <> 0
+      case Nat.eql(smallest, xs.head){
+        true: xs.tail
+        false: List.cons<Nat>(xs.head, delete_smallest(xs.tail))
+      }
+    }
+  }
 
-// //---------------------------------------------------------------------------------------------
+// ex_09:_
+//   let lista = [3, 1, 4, 5, 6, 0 ,2]
+//   List.show<Nat>(Nat.show, delete_smallest(lista))
 
-// // Returns the same list, in ascending order
-// sort_ascending(xs: List<Nat>): List<Nat>
+//---------------------------------------------------------------------------------------------
+
+// Returns the same list, in ascending order
+sort_ascending(xs: List<Nat>): List<Nat>
+  case xs{
+    nil: List.nil<Nat>
+    cons: case xs.tail{
+      nil: xs
+      cons: List.cons<Nat>(smallest.go(xs), sort_ascending(delete_smallest(xs)))
+    }
+  }
+// ex_09:_   
+// let lista = [3, 1, 4, 5, 6, 0 ,2]
+// sort_ascending(lista)
+//---------------------------------------------------------------------------------------------
+
+// Returns an element at an index from the list
+// if there is an element at that index
+//   returns Maybe.some!(element)
+// else
+//   returns Maybe.none!
+get<A: Type>(idx: Nat, xs: List<A>): Maybe<A> 
+  case xs{
+    nil: Maybe.none<A>
+    cons: case idx{
+      zero: Maybe.some<A>(xs.head)
+      succ: get<A>(idx.pred, xs.tail)
+    }
+  }
+
+// ex_09: Maybe<Nat>
+// let lista = [3, 1, 4, 5, 6, 0, 2]
+// get<Nat>(2, lista)
+
+//---------------------------------------------------------------------------------------------
+
+// Removes all elements that does not match a condition
+// List.filter<Nat>(Nat.odd, [1, 2, 3, 4, 5]) = [1, 3, 5]
+//filter<A: Type>(f: A -> Bool, xs: List<A>): List<A>
   
-
-// //---------------------------------------------------------------------------------------------
-
-// // Returns an element at an index from the list
-// // if there is an element at that index
-// //   returns Maybe.some!(element)
-// // else
-// //   returns Maybe.none!
-// get<A: Type>(idx: Nat, xs: List<A>): Maybe<A>
-//   ?g
-
-// //---------------------------------------------------------------------------------------------
-
-// // Removes all elements that does not match a condition
-// // List.filter<Nat>(Nat.odd, [1, 2, 3, 4, 5]) = [1, 3, 5]
-// filter<A: Type>(f: A -> Bool, xs: List<A>): List<A>
+ex_09: IO<Unit>
+  IO {
+    Tests._09.zip(zip)
+    Tests._09.smallest(smallest)
+    Tests._09.delete_smallest(delete_smallest)
+    Tests._09.sort_ascending(sort_ascending)
+    Tests._09.get(get)
+    Tests._09.filter(filter)
+  }
   
