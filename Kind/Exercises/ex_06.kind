@@ -98,7 +98,16 @@ int(sign: Bool, num: Nat): Inte
 // int(false, 2)     = -1
 // int(true,  2)     = +3
 inc(a: Inte): Inte  
-  ?inc
+  case Inte{
+    neg: case Neg{
+      one: 0
+      pred: 
+    }
+    pos: case Pos{
+      zero: 
+      succ:
+    }
+  }
 
 // Decrements an Integer
 // int(false, 1) = -2
@@ -178,3 +187,21 @@ hlf(a: Inte): Inte
 // int(true,  10) / int(false, 12) = +0
 div(a: Inte, b: Inte): Inte 
   ?div
+
+
+  ex_06: IO<Unit>
+  IO {
+    Tests._06.inc(inc)
+    Tests._06.dec(dec)
+    Tests._06.dbl(dbl)
+    Tests._06.add(add)
+    Tests._06.mul(mul)
+    Tests._06.sub(sub)
+    Tests._06.eql(eql)
+    Tests._06.gtn(gtn)
+    Tests._06.ltn(ltn)
+    Tests._06.min(min)
+    Tests._06.max(max)
+    Tests._06.hlf(hlf)
+    Tests._06.div(div)
+  }
